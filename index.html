@@ -728,9 +728,85 @@
   <div class="container">
     <div class="section-label">Open Source</div>
     <h2 class="section-title">Projetos no GitHub</h2>
-    <p class="section-desc">Portfólio técnico público com exemplos reais de automação.</p>
+    <p class="section-desc">Portfólio técnico público com exemplos reais de automação em múltiplas ferramentas e camadas.</p>
 
     <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-name">Athenas — Cypress API (112 testes)</div>
+        <div class="project-desc">
+          Suite completa de testes de API REST cobrindo todos os endpoints do sistema Athenas.
+          Fixtures data-driven, Page Object Model, factory de dados dinâmicos e integração com CI/CD via GitHub Actions.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-green">Cypress</span>
+          <span class="tag tag-blue">API REST</span>
+          <span class="tag tag-purple">Page Object</span>
+          <span class="tag tag-blue">GitHub Actions</span>
+        </div>
+        <a class="project-link" href="https://github.com/Victorios990/athenas-cypress-tests" target="_blank">Ver no GitHub →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-name">Athenas — Playwright E2E (62 testes)</div>
+        <div class="project-desc">
+          Testes end-to-end cobrindo login, quiz, físico, equilíbrio, notificações, relatórios e regressão completa.
+          Escrito em TypeScript com Page Object Model e execução paralela.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-green">Playwright</span>
+          <span class="tag tag-blue">TypeScript</span>
+          <span class="tag tag-purple">Page Object</span>
+          <span class="tag tag-green">E2E</span>
+        </div>
+        <a class="project-link" href="https://github.com/Victorios990/athenas-playwright-tests" target="_blank">Ver no GitHub →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-name">Athenas — Robot Framework (105 CTs)</div>
+        <div class="project-desc">
+          Suite abrangente com 105 casos de teste cobrindo login, PDI, quiz, cursos, equilíbrio, físico, relatórios
+          e smoke Selenium. Keywords reutilizáveis organizadas por módulo.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-orange">Robot Framework</span>
+          <span class="tag tag-orange">Python</span>
+          <span class="tag tag-blue">Selenium</span>
+          <span class="tag tag-blue">API REST</span>
+        </div>
+        <a class="project-link" href="https://github.com/Victorios990/athenas-robot-tests" target="_blank">Ver no GitHub →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-name">Athenas — JMeter Performance</div>
+        <div class="project-desc">
+          Suite de performance e carga nos endpoints REST do Athenas. 5 Thread Groups independentes,
+          dados CSV data-driven, scripts Python para execução e coleta de resultados.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-orange">JMeter</span>
+          <span class="tag tag-orange">Python</span>
+          <span class="tag tag-blue">Performance</span>
+          <span class="tag tag-blue">CSV Data-driven</span>
+        </div>
+        <a class="project-link" href="https://github.com/Victorios990/athenas-jmeter-tests" target="_blank">Ver no GitHub →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-name">Athenas — Appium Mobile (Android)</div>
+        <div class="project-desc">
+          Smoke tests mobile para o sistema Athenas em Android via Robot Framework + Appium 3.x.
+          Cobre login, navegação e responsividade. Setup com adb reverse e JIT warmup documentado.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-orange">Appium</span>
+          <span class="tag tag-orange">Robot Framework</span>
+          <span class="tag tag-blue">Android</span>
+          <span class="tag tag-green">Mobile</span>
+        </div>
+        <a class="project-link" href="https://github.com/Victorios990/athenas-appium-tests" target="_blank">Ver no GitHub →</a>
+      </div>
+
       <div class="project-card">
         <div class="project-name">GitLab Test Automation — Cypress</div>
         <div class="project-desc">
@@ -742,26 +818,52 @@
           <span class="tag tag-blue">JavaScript</span>
           <span class="tag tag-purple">Page Object</span>
         </div>
-        <a class="project-link" href="https://github.com/Victorios990/cypress" target="_blank">
-          Ver no GitHub →
-        </a>
+        <a class="project-link" href="https://github.com/Victorios990/cypress" target="_blank">Ver no GitHub →</a>
       </div>
 
       <div class="project-card">
-        <div class="project-name">Robot Framework Test Suite — Web & API</div>
+        <div class="project-name">Robot Framework — Web & API (Amazon / ServeRest)</div>
         <div class="project-desc">
-          Automação Web (Amazon.com.br com SeleniumLibrary) e testes de API REST (ServeRest).
-          Aplica Page Objects, biblioteca customizada em Python e geração de dados com FakerLibrary.
+          Automação Web da Amazon.com.br com SeleniumLibrary e testes de API REST na ServeRest.
+          Biblioteca customizada em Python, Page Objects e geração de dados com FakerLibrary.
         </div>
         <div class="step-tags">
           <span class="tag tag-orange">Robot Framework</span>
           <span class="tag tag-orange">Python</span>
+          <span class="tag tag-blue">SeleniumLibrary</span>
           <span class="tag tag-blue">API REST</span>
         </div>
-        <a class="project-link" href="https://github.com/Victorios990/testandoComRobotFramework" target="_blank">
-          Ver no GitHub →
-        </a>
+        <a class="project-link" href="https://github.com/Victorios990/testandoComRobotFramework" target="_blank">Ver no GitHub →</a>
       </div>
+
+      <div class="project-card">
+        <div class="project-name">QA Challenge — Rubeus (Cypress)</div>
+        <div class="project-desc">
+          Desafio técnico de QA automatizado com Cypress seguindo critérios de classificação de bugs
+          e melhorias propostos pela Rubeus. Relatório de defeitos incluído.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-green">Cypress</span>
+          <span class="tag tag-blue">JavaScript</span>
+          <span class="tag tag-purple">Bug Report</span>
+        </div>
+        <a class="project-link" href="https://github.com/Victorios990/automation-test-rubeus" target="_blank">Ver no GitHub →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-name">QA Challenge — CBLab</div>
+        <div class="project-desc">
+          Desafio técnico proposto pelo CBLab para vaga de QA Engineer. Cobertura de requisitos,
+          casos de teste e automação dos cenários definidos no escopo do desafio.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-blue">QA Challenge</span>
+          <span class="tag tag-purple">Casos de Teste</span>
+          <span class="tag tag-green">Automação</span>
+        </div>
+        <a class="project-link" href="https://github.com/Victorios990/testeCBLab" target="_blank">Ver no GitHub →</a>
+      </div>
+
     </div>
   </div>
 </section>
