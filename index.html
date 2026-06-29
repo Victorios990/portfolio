@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Victor Almeida · QA Engineer & SDET</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg2: #161b22;
+      --bg3: #1c2333;
+      --border: #30363d;
+      --accent: #58a6ff;
+      --accent2: #3fb950;
+      --accent3: #f78166;
+      --accent4: #d2a8ff;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --card: #21262d;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,17,23,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .nav-brand { font-weight: 700; font-size: 1rem; color: var(--text); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: .875rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 92vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(88,166,255,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(88,166,255,.1);
+      border: 1px solid rgba(88,166,255,.3);
+      border-radius: 2rem;
+      padding: .3rem .9rem;
+      font-size: .8rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+    .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      padding: .65rem 1.4rem;
+      border-radius: .5rem;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      border: none;
+      display: inline-flex; align-items: center; gap: .4rem;
+    }
+    .btn-primary { background: var(--accent); color: #000; }
+    .btn-primary:hover { background: #79c0ff; text-decoration: none; }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; justify-content: center; margin-top: 3rem; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-value { font-size: 2rem; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: .8rem; color: var(--muted); }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .5rem;
+    }
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 800;
+      margin-bottom: .75rem;
+    }
+    .section-desc { color: var(--muted); max-width: 640px; margin-bottom: 3rem; }
+
+    /* ─── PROCESSO ─── */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+    .process-step {
+      background: var(--card);
+      padding: 2rem;
+      position: relative;
+      transition: background .2s;
+    }
+    .process-step:hover { background: var(--bg3); }
+    .step-number {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .step-icon {
+      font-size: 2rem;
+      margin-bottom: .75rem;
+    }
+    .step-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+    }
+    .step-desc { font-size: .875rem; color: var(--muted); line-height: 1.6; }
+    .step-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
+    .tag {
+      font-size: .7rem;
+      font-weight: 600;
+      padding: .2rem .55rem;
+      border-radius: .3rem;
+    }
+    .tag-blue { background: rgba(88,166,255,.15); color: var(--accent); }
+    .tag-green { background: rgba(63,185,80,.15); color: var(--accent2); }
+    .tag-orange { background: rgba(247,129,102,.15); color: var(--accent3); }
+    .tag-purple { background: rgba(210,168,255,.15); color: var(--accent4); }
+
+    /* ─── GHERKIN DEMO ─── */
+    .gherkin-demo {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+    .gherkin-header {
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      padding: .75rem 1.25rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-r { background: #ff5f57; }
+    .dot-y { background: #febc2e; }
+    .dot-g { background: #28c840; }
+    .gherkin-filename { font-size: .8rem; color: var(--muted); margin-left: .5rem; }
+    .gherkin-body { padding: 1.5rem; font-family: 'SF Mono', 'Fira Code', monospace; font-size: .85rem; line-height: 1.8; overflow-x: auto; }
+    .kw-feature { color: #d2a8ff; }
+    .kw-scenario { color: #79c0ff; }
+    .kw-step { color: #3fb950; }
+    .kw-and { color: #3fb950; }
+    .kw-value { color: #ffa657; }
+    .kw-comment { color: #6e7681; font-style: italic; }
+
+    /* ─── CASES ─── */
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .case-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.75rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .case-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .case-company {
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--accent);
+      margin-bottom: .4rem;
+    }
+    .case-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: .75rem;
+    }
+    .case-desc { font-size: .875rem; color: var(--muted); margin-bottom: 1.25rem; }
+    .case-highlights { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .case-highlights li {
+      font-size: .8rem;
+      color: var(--muted);
+      display: flex; align-items: flex-start; gap: .5rem;
+    }
+    .case-highlights li::before { content: '→'; color: var(--accent2); flex-shrink: 0; }
+
+    /* ─── PROJETOS OPEN SOURCE ─── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      transition: border-color .2s;
+      display: flex; flex-direction: column; gap: .75rem;
+    }
+    .project-card:hover { border-color: var(--accent4); }
+    .project-icon { font-size: 1.75rem; }
+    .project-name { font-size: 1rem; font-weight: 700; }
+    .project-desc { font-size: .875rem; color: var(--muted); flex: 1; }
+    .project-link {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--accent);
+      display: inline-flex; align-items: center; gap: .3rem;
+    }
+
+    /* ─── STACK ─── */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .stack-category {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: .75rem;
+      padding: 1.25rem;
+    }
+    .stack-category-title {
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin-bottom: .75rem;
+    }
+    .stack-items { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .stack-item {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: .4rem;
+      padding: .3rem .7rem;
+      font-size: .8rem;
+      color: var(--text);
+    }
+
+    /* ─── CERTIFICAÇÃO ─── */
+    .cert-card {
+      background: linear-gradient(135deg, rgba(88,166,255,.08) 0%, rgba(210,168,255,.08) 100%);
+      border: 1px solid rgba(88,166,255,.25);
+      border-radius: 1rem;
+      padding: 2rem;
+      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .cert-badge {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, var(--accent), var(--accent4));
+      border-radius: .75rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.75rem; flex-shrink: 0;
+    }
+    .cert-name { font-size: 1.1rem; font-weight: 700; }
+    .cert-issuer { color: var(--muted); font-size: .875rem; }
+
+    /* ─── CONTACT ─── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: .75rem;
+      padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+      transition: border-color .2s;
+    }
+    .contact-card:hover { border-color: var(--accent); }
+    .contact-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .contact-label { font-size: .75rem; color: var(--muted); }
+    .contact-value { font-size: .9rem; font-weight: 600; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    /* ─── TIMELINE (experiência) ─── */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: .5rem; top: 0; bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.65rem; top: .35rem;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+    }
+    .timeline-period { font-size: .75rem; color: var(--muted); margin-bottom: .25rem; }
+    .timeline-role { font-weight: 700; font-size: 1rem; }
+    .timeline-company { color: var(--accent); font-size: .9rem; margin-bottom: .75rem; }
+    .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
+    .timeline-bullets li {
+      font-size: .875rem;
+      color: var(--muted);
+      display: flex; align-items: flex-start; gap: .5rem;
+    }
+    .timeline-bullets li::before { content: '▸'; color: var(--accent2); flex-shrink: 0; margin-top: .05rem; }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 2rem; }
+      .hero-stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav>
+  <span class="nav-brand">Victor Almeida</span>
+  <ul class="nav-links">
+    <li><a href="#processo">Processo</a></li>
+    <li><a href="#cases">Cases</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div>
+    <div class="hero-badge">CTFL · BSTQB / ISTQB Certified</div>
+    <h1>QA Engineer & SDET<br /><span>que entende o negócio</span></h1>
+    <p>
+      Do refinamento da história até a homologação — atuo em todo o ciclo de qualidade de software,
+      conectando visão de produto, engenharia e entrega contínua.
+    </p>
+    <div class="hero-ctas">
+      <a href="#processo" class="btn btn-primary">Ver meu processo ↓</a>
+      <a href="https://www.linkedin.com/in/victoralmeidaqa/" target="_blank" class="btn btn-outline">LinkedIn</a>
+      <a href="https://github.com/Victorios990" target="_blank" class="btn btn-outline">GitHub</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-value">5+</div>
+        <div class="stat-label">anos de experiência</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">4</div>
+        <div class="stat-label">empresas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">Web · API · Mobile</div>
+        <div class="stat-label">coberturas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">CTFL</div>
+        <div class="stat-label">certificado BSTQB</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PROCESSO ══════════ -->
+<section id="processo" style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="container">
+    <div class="section-label">Como trabalho</div>
+    <h2 class="section-title">Do Planejamento à Homologação</h2>
+    <p class="section-desc">
+      Minha atuação não começa nos testes — começa no entendimento do problema.
+      Participo ativamente do refinamento, defino critérios junto ao PO e só então
+      construo a automação que valida cada premissa levantada.
+    </p>
+
+    <div class="process-grid">
+
+      <div class="process-step">
+        <div class="step-number">Etapa 01</div>
+        <div class="step-title">Refinamento & Requisitos</div>
+        <div class="step-desc">
+          Participo das cerimônias de refinamento com o PO para entender a regra de negócio
+          antes de qualquer linha de código. Questiono fluxos de exceção, limites e impacto
+          para o usuário.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-blue">Jira / Azure DevOps</span>
+          <span class="tag tag-blue">Scrum / Kanban</span>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">Etapa 02</div>
+        <div class="step-title">Critérios de Aceite & BDD</div>
+        <div class="step-desc">
+          Converto regras de negócio em cenários Gherkin (Given / When / Then) cobrindo
+          fluxos de sucesso, exceção e não-funcionais. Isso elimina ambiguidade e serve
+          como contrato entre produto, dev e QA.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-purple">Gherkin / BDD</span>
+          <span class="tag tag-purple">Cucumber</span>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">Etapa 03</div>
+        <div class="step-title">Mocking & Isolamento</div>
+        <div class="step-desc">
+          Antes de a integração estar disponível, crio stubs WireMock para simular
+          microsserviços externos e permitir testes de integração paralelos ao desenvolvimento,
+          acelerando o ciclo.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-orange">WireMock</span>
+          <span class="tag tag-orange">Microsserviços</span>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">Etapa 04</div>
+        <div class="step-title">Automação de Testes</div>
+        <div class="step-desc">
+          Desenvolvo suites E2E (Cypress / Playwright), testes de API (Postman / Robot Framework),
+          automação mobile (Appium) e testes de performance (JMeter) — seguindo Page Object
+          Model e Custom Commands para manutenibilidade.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-green">Cypress</span>
+          <span class="tag tag-green">Playwright</span>
+          <span class="tag tag-green">Robot Framework</span>
+          <span class="tag tag-green">Postman</span>
+          <span class="tag tag-green">JMeter</span>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">Etapa 05</div>
+        <div class="step-title">Validação de Dados & Código</div>
+        <div class="step-desc">
+          Valido integridade entre front-end, API e banco via SQL.
+          Analiso o código-fonte com SonarQube reportando code smells e vulnerabilidades
+          antes que cheguem à produção.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-blue">SQL</span>
+          <span class="tag tag-blue">SonarQube</span>
+          <span class="tag tag-blue">BrowserStack</span>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">Etapa 06</div>
+        <div class="step-title">Homologação & Relatório</div>
+        <div class="step-desc">
+          Conduz testes regressivos E2E pós-deploy, monitoro os ambientes e elaboro
+          relatórios com métricas de qualidade para os stakeholders — garantindo visibilidade
+          real do estado de saúde do produto.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-purple">Regression E2E</span>
+          <span class="tag tag-purple">TestBook</span>
+          <span class="tag tag-purple">CI/CD</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Exemplo Gherkin -->
+    <div class="gherkin-demo">
+      <div class="gherkin-header">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="gherkin-filename">login_seguro.feature</span>
+      </div>
+      <div class="gherkin-body"><pre>
+<span class="kw-comment"># Exemplo de critério de aceite elaborado durante refinamento com o PO</span>
+
+<span class="kw-feature">Feature:</span> Autenticação segura de usuário
+  <span class="kw-comment"># Regra de negócio: conta bloqueada após 3 tentativas inválidas</span>
+
+  <span class="kw-scenario">Scenario:</span> Login com credenciais válidas
+    <span class="kw-step">Given</span> que o usuário está na tela de login
+    <span class="kw-step">When</span>  ele informa e-mail <span class="kw-value">"victor@empresa.com"</span> e senha <span class="kw-value">"Senha@123"</span>
+    <span class="kw-and">And</span>   clica em <span class="kw-value">"Entrar"</span>
+    <span class="kw-step">Then</span>  deve ser redirecionado ao Dashboard
+    <span class="kw-and">And</span>   o token JWT deve estar presente nos cookies
+
+  <span class="kw-scenario">Scenario:</span> Bloqueio após 3 tentativas inválidas
+    <span class="kw-step">Given</span> que o usuário realiza <span class="kw-value">3</span> tentativas com senha incorreta
+    <span class="kw-step">Then</span>  a conta deve ser bloqueada por <span class="kw-value">15 minutos</span>
+    <span class="kw-and">And</span>   um e-mail de alerta deve ser enviado ao usuário
+
+  <span class="kw-scenario">Scenario:</span> Tentativa de login com conta inativa  <span class="kw-comment"># fluxo de exceção</span>
+    <span class="kw-step">Given</span> que o usuário possui conta com status <span class="kw-value">"INATIVA"</span>
+    <span class="kw-step">When</span>  tenta realizar login
+    <span class="kw-step">Then</span>  deve ver a mensagem <span class="kw-value">"Conta inativa. Contate o suporte."</span>
+    <span class="kw-and">And</span>   o HTTP status da API deve ser <span class="kw-value">403</span>
+</pre></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CASES ══════════ -->
+<section id="cases">
+  <div class="container">
+    <div class="section-label">Experiência</div>
+    <h2 class="section-title">Cases Profissionais</h2>
+    <p class="section-desc">Principais entregas em cada empresa, com foco em impacto técnico e de negócio.</p>
+
+    <div class="cases-grid">
+
+      <div class="case-card">
+        <div class="case-company">AllEasy · out/2025 – presente</div>
+        <div class="case-title">Qualidade em Microsserviços com Foco em Deploy Contínuo</div>
+        <div class="case-desc">
+          Implantei estratégia de QA integrada ao pipeline de entrega, desde refinamento com PO
+          até monitoramento pós-deploy em todos os ambientes.
+        </div>
+        <ul class="case-highlights">
+          <li>Automação de testes de API com Postman eliminando validação manual pós-deploy</li>
+          <li>Critérios de aceite BDD/Gherkin cobrindo fluxos de sucesso, exceção e não-funcionais</li>
+          <li>Stubs WireMock para dependências externas permitindo testes paralelos ao dev</li>
+          <li>Validações cross-browser e mobile via BrowserStack em matriz de dispositivos</li>
+          <li>Relatórios de qualidade com métricas via TestBook para stakeholders</li>
+        </ul>
+        <div class="step-tags" style="margin-top:1rem">
+          <span class="tag tag-green">Postman</span>
+          <span class="tag tag-purple">BDD/Gherkin</span>
+          <span class="tag tag-orange">WireMock</span>
+          <span class="tag tag-blue">BrowserStack</span>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-company">TAREA · jan/2025 – ago/2025</div>
+        <div class="case-title">Qualidade Full-Stack: GUI, API, Performance e Código</div>
+        <div class="case-desc">
+          Atuação de ponta a ponta cobrindo automação web, testes de carga e análise estática —
+          como ponte entre o time de produto e engenharia.
+        </div>
+        <ul class="case-highlights">
+          <li>Suites E2E GUI e API com Cypress e Postman em apps de microsserviços</li>
+          <li>Testes de carga e stress com JMeter identificando gargalos antes da produção</li>
+          <li>Análise estática com SonarQube reportando code smells e vulnerabilidades</li>
+          <li>Validação de integridade de dados via SQL (front-end ↔ API ↔ banco)</li>
+          <li>Mocks WireMock acelerando o ciclo de testes de integração</li>
+        </ul>
+        <div class="step-tags" style="margin-top:1rem">
+          <span class="tag tag-green">Cypress</span>
+          <span class="tag tag-green">JMeter</span>
+          <span class="tag tag-blue">SonarQube</span>
+          <span class="tag tag-blue">SQL</span>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-company">BRAZCODE · nov/2022 – dez/2024</div>
+        <div class="case-title">Automação Mobile e Contract Testing em Produção</div>
+        <div class="case-desc">
+          Cobertura de qualidade para aplicativo mobile em produção com automação Android/iOS
+          e contract testing de microsserviços de back-end.
+        </div>
+        <ul class="case-highlights">
+          <li>Automação mobile Android e iOS com Appium + Robot Framework</li>
+          <li>Cenários BDD com Cucumber reduzindo ambiguidade entre produto e dev</li>
+          <li>Testes de API e contract testing com Robot Framework para back-end</li>
+          <li>Stubs WireMock para simular dependências em ambientes de teste isolados</li>
+        </ul>
+        <div class="step-tags" style="margin-top:1rem">
+          <span class="tag tag-orange">Appium</span>
+          <span class="tag tag-green">Robot Framework</span>
+          <span class="tag tag-purple">Cucumber/BDD</span>
+          <span class="tag tag-orange">WireMock</span>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-company">RSI · mai/2021 – abr/2022</div>
+        <div class="case-title">Base em QA: Testes de Aceitação e Automação em Sistemas Legados</div>
+        <div class="case-desc">
+          Início de carreira com foco em testes exploratórios e automação funcional de sistemas
+          legados corporativos.
+        </div>
+        <ul class="case-highlights">
+          <li>Elaboração de planos e roteiros de teste</li>
+          <li>Testes de aceitação e exploratórios estruturados</li>
+          <li>Automação com IBM Rational Functional Tester para sistemas legados</li>
+        </ul>
+        <div class="step-tags" style="margin-top:1rem">
+          <span class="tag tag-blue">Testes Exploratórios</span>
+          <span class="tag tag-blue">IBM RFT</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Timeline experiência -->
+    <div style="margin-top: 3rem;">
+      <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:1.5rem; color:var(--muted);">Trajetória completa</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-period">out/2025 – presente</div>
+          <div class="timeline-role">Analista de Qualidade</div>
+          <div class="timeline-company">AllEasy</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-period">jan/2025 – ago/2025</div>
+          <div class="timeline-role">Analista de Qualidade</div>
+          <div class="timeline-company">TAREA</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-period">nov/2022 – dez/2024</div>
+          <div class="timeline-role">Analista de Qualidade</div>
+          <div class="timeline-company">BRAZCODE</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-period">mai/2021 – abr/2022</div>
+          <div class="timeline-role">Estagiário de Testes</div>
+          <div class="timeline-company">RSI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PROJETOS OPEN SOURCE ══════════ -->
+<section id="projetos" style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="container">
+    <div class="section-label">Open Source</div>
+    <h2 class="section-title">Projetos no GitHub</h2>
+    <p class="section-desc">Portfólio técnico público com exemplos reais de automação.</p>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-name">GitLab Test Automation — Cypress</div>
+        <div class="project-desc">
+          Suite E2E automatizando fluxos de gestão de projetos e issues no GitLab.
+          Abordagem híbrida GUI + API, dados dinâmicos com Faker e custom commands reutilizáveis.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-green">Cypress</span>
+          <span class="tag tag-blue">JavaScript</span>
+          <span class="tag tag-purple">Page Object</span>
+        </div>
+        <a class="project-link" href="https://github.com/Victorios990/cypress" target="_blank">
+          Ver no GitHub →
+        </a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-name">Robot Framework Test Suite — Web & API</div>
+        <div class="project-desc">
+          Automação Web (Amazon.com.br com SeleniumLibrary) e testes de API REST (ServeRest).
+          Aplica Page Objects, biblioteca customizada em Python e geração de dados com FakerLibrary.
+        </div>
+        <div class="step-tags">
+          <span class="tag tag-orange">Robot Framework</span>
+          <span class="tag tag-orange">Python</span>
+          <span class="tag tag-blue">API REST</span>
+        </div>
+        <a class="project-link" href="https://github.com/Victorios990/testandoComRobotFramework" target="_blank">
+          Ver no GitHub →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ STACK ══════════ -->
+<section id="stack">
+  <div class="container">
+    <div class="section-label">Ferramentas</div>
+    <h2 class="section-title">Stack Técnica</h2>
+    <p class="section-desc">Ferramentas que uso no dia a dia para garantir qualidade em todo o ciclo de entrega.</p>
+
+    <div class="stack-grid">
+      <div class="stack-category">
+        <div class="stack-category-title">Automação Web / GUI</div>
+        <div class="stack-items">
+          <span class="stack-item">Cypress</span>
+          <span class="stack-item">Playwright</span>
+          <span class="stack-item">JavaScript</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <div class="stack-category-title">Automação Mobile</div>
+        <div class="stack-items">
+          <span class="stack-item">Appium</span>
+          <span class="stack-item">Robot Framework</span>
+          <span class="stack-item">Android / iOS</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <div class="stack-category-title">Testes de API</div>
+        <div class="stack-items">
+          <span class="stack-item">Postman</span>
+          <span class="stack-item">Cypress</span>
+          <span class="stack-item">Robot Framework</span>
+          <span class="stack-item">REST / HTTP</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <div class="stack-category-title">BDD / Test Design</div>
+        <div class="stack-items">
+          <span class="stack-item">Gherkin</span>
+          <span class="stack-item">Cucumber</span>
+          <span class="stack-item">Page Object Model</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <div class="stack-category-title">Performance & Código</div>
+        <div class="stack-items">
+          <span class="stack-item">JMeter</span>
+          <span class="stack-item">SonarQube</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <div class="stack-category-title">Mocking / Stubs</div>
+        <div class="stack-items">
+          <span class="stack-item">WireMock</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <div class="stack-category-title">Cross-browser / Device</div>
+        <div class="stack-items">
+          <span class="stack-item">BrowserStack</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <div class="stack-category-title">CI/CD & Infra</div>
+        <div class="stack-items">
+          <span class="stack-item">GitHub Actions</span>
+          <span class="stack-item">Docker</span>
+          <span class="stack-item">OCI</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <div class="stack-category-title">Dados & Gestão</div>
+        <div class="stack-items">
+          <span class="stack-item">SQL</span>
+          <span class="stack-item">Jira</span>
+          <span class="stack-item">Azure DevOps</span>
+          <span class="stack-item">Python</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certificação -->
+    <div style="margin-top: 2.5rem;">
+      <div class="cert-card">
+        <div class="cert-badge" style="font-size:.9rem; font-weight:800; letter-spacing:-.02em;">CTFL</div>
+        <div>
+          <div class="cert-name">CTFL — Certified Tester Foundation Level</div>
+          <div class="cert-issuer">BSTQB / ISTQB · Certificado Internacional em Testes de Software</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formação -->
+    <div style="margin-top:2rem; display:flex; flex-wrap:wrap; gap:1rem;">
+      <div class="stack-category" style="flex:1; min-width:250px;">
+        <div class="stack-category-title">Formação Acadêmica</div>
+        <div style="display:flex;flex-direction:column;gap:.6rem;margin-top:.25rem;">
+          <div style="font-size:.875rem;"><strong>Pós-graduação</strong> · Ciência de Dados e IA <span style="color:var(--muted);">· Anhanguera · 2025</span></div>
+          <div style="font-size:.875rem;"><strong>Pós-graduação</strong> · Eng. de Software — Qualidade e Testes <span style="color:var(--muted);">· Anhanguera · 2024–2025</span></div>
+          <div style="font-size:.875rem;"><strong>Superior</strong> · Análise e Desenvolvimento de Sistemas <span style="color:var(--muted);">· Anhanguera · 2019–2022</span></div>
+        </div>
+      </div>
+      <div class="stack-category" style="flex:1; min-width:200px;">
+        <div class="stack-category-title">Idiomas</div>
+        <div style="display:flex;flex-direction:column;gap:.6rem;margin-top:.25rem;">
+          <div style="font-size:.875rem;"><strong>Português</strong> — Nativo</div>
+          <div style="font-size:.875rem;"><strong>Inglês</strong> — Intermediário (cursando)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONTATO ══════════ -->
+<section id="contato" style="background: var(--bg2); border-top: 1px solid var(--border);">
+  <div class="container">
+    <div class="section-label">Vamos conversar</div>
+    <h2 class="section-title">Contato</h2>
+    <p class="section-desc">Disponível para oportunidades, projetos e conversas técnicas.</p>
+
+    <div class="contact-grid">
+      <a href="mailto:victor.laurentino90@gmail.com" class="contact-card" style="text-decoration:none;color:inherit;">
+        <div>
+          <div class="contact-label">E-mail</div>
+          <div class="contact-value">victor.laurentino90@gmail.com</div>
+        </div>
+      </a>
+      <a href="tel:+5561994183864" class="contact-card" style="text-decoration:none;color:inherit;">
+        <div>
+          <div class="contact-label">Telefone</div>
+          <div class="contact-value">(61) 99418-3864</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/victoralmeidaqa/" target="_blank" class="contact-card" style="text-decoration:none;color:inherit;">
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">victoralmeidaqa</div>
+        </div>
+      </a>
+      <a href="https://github.com/Victorios990" target="_blank" class="contact-card" style="text-decoration:none;color:inherit;">
+        <div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-value">Victorios990</div>
+        </div>
+      </a>
+      <div class="contact-card">
+        <div>
+          <div class="contact-label">Localização</div>
+          <div class="contact-value">Brasília – DF, Brasil</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 · José Victor Conceição Laurentino de Almeida · QA Engineer & SDET</p>
+  <p style="margin-top:.5rem; color: #484f58;">Feito para hospedar no GitHub Pages · Netlify · Vercel</p>
+</footer>
+
+</body>
+</html>
