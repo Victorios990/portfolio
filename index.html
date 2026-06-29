@@ -50,7 +50,6 @@
     .hero {
       min-height: 92vh;
       display: flex; align-items: center; justify-content: center;
-      text-align: center;
       padding: 4rem 2rem;
       position: relative;
       overflow: hidden;
@@ -58,16 +57,47 @@
     .hero::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(88,166,255,.12) 0%, transparent 70%);
+      background: radial-gradient(ellipse 80% 60% at 30% 50%, rgba(88,166,255,.12) 0%, transparent 70%);
       pointer-events: none;
     }
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      max-width: 1100px;
+      width: 100%;
+    }
     .hero-avatar {
-      width: 120px; height: 120px;
+      width: 260px; height: 260px;
       border-radius: 50%;
       object-fit: cover;
+      object-position: center top;
       border: 3px solid rgba(88,166,255,.4);
-      box-shadow: 0 0 0 6px rgba(88,166,255,.08);
-      margin-bottom: 1.5rem;
+      box-shadow: 0 0 0 8px rgba(88,166,255,.08);
+      flex-shrink: 0;
+    }
+    .hero-content {
+      text-align: left;
+    }
+    .hero-content p {
+      max-width: 520px;
+      margin-bottom: 2rem;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 3rem; flex-wrap: wrap;
+    }
+    .stat { text-align: left; }
+
+    @media (max-width: 768px) {
+      .hero-inner { flex-direction: column; text-align: center; }
+      .hero-content { text-align: center; }
+      .hero-ctas { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .stat { text-align: center; }
+      .hero-avatar { width: 180px; height: 180px; }
     }
 
     .hero-badge {
@@ -88,13 +118,6 @@
       margin-bottom: 1rem;
     }
     .hero h1 span { color: var(--accent); }
-    .hero p {
-      max-width: 640px;
-      margin: 0 auto 2rem;
-      color: var(--muted);
-      font-size: 1.1rem;
-    }
-    .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .btn {
       padding: .65rem 1.4rem;
       border-radius: .5rem;
@@ -114,10 +137,6 @@
     }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
 
-    .hero-stats {
-      display: flex; gap: 2.5rem; justify-content: center; margin-top: 3rem; flex-wrap: wrap;
-    }
-    .stat { text-align: center; }
     .stat-value { font-size: 2rem; font-weight: 800; color: var(--accent); }
     .stat-label { font-size: .8rem; color: var(--muted); }
 
@@ -405,35 +424,37 @@
 
 <!-- ══════════ HERO ══════════ -->
 <section class="hero">
-  <div>
+  <div class="hero-inner">
     <img src="victor.png" alt="Victor Almeida" class="hero-avatar" />
-    <div class="hero-badge">CTFL · BSTQB / ISTQB Certified</div>
-    <h1>QA Engineer & SDET<br /><span>que entende o negócio</span></h1>
-    <p>
-      Do refinamento da história até a homologação — atuo em todo o ciclo de qualidade de software,
-      conectando visão de produto, engenharia e entrega contínua.
-    </p>
-    <div class="hero-ctas">
-      <a href="#processo" class="btn btn-primary">Ver meu processo ↓</a>
-      <a href="https://www.linkedin.com/in/victoralmeidaqa/" target="_blank" class="btn btn-outline">LinkedIn</a>
-      <a href="https://github.com/Victorios990" target="_blank" class="btn btn-outline">GitHub</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-value">5+</div>
-        <div class="stat-label">anos de experiência</div>
+    <div class="hero-content">
+      <div class="hero-badge">CTFL · BSTQB / ISTQB Certified</div>
+      <h1>QA Engineer & SDET</h1>
+      <p>
+        Do refinamento da história até a homologação — atuo em todo o ciclo de qualidade de software,
+        conectando visão de produto, engenharia e entrega contínua.
+      </p>
+      <div class="hero-ctas">
+        <a href="#processo" class="btn btn-primary">Ver meu processo ↓</a>
+        <a href="https://www.linkedin.com/in/victoralmeidaqa/" target="_blank" class="btn btn-outline">LinkedIn</a>
+        <a href="https://github.com/Victorios990" target="_blank" class="btn btn-outline">GitHub</a>
       </div>
-      <div class="stat">
-        <div class="stat-value">4</div>
-        <div class="stat-label">empresas</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">Web · API · Mobile</div>
-        <div class="stat-label">coberturas</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">CTFL</div>
-        <div class="stat-label">certificado BSTQB</div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-value">5+</div>
+          <div class="stat-label">anos de experiência</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">4</div>
+          <div class="stat-label">empresas</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">Web · API · Mobile</div>
+          <div class="stat-label">coberturas</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">CTFL</div>
+          <div class="stat-label">certificado BSTQB</div>
+        </div>
       </div>
     </div>
   </div>
