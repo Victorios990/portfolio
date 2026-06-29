@@ -323,23 +323,43 @@
       color: var(--text);
     }
 
-    /* ─── CERTIFICAÇÃO ─── */
+    /* ─── CERTIFICAÇÃO / FORMAÇÃO ─── */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
     .cert-card {
       background: linear-gradient(135deg, rgba(88,166,255,.08) 0%, rgba(210,168,255,.08) 100%);
       border: 1px solid rgba(88,166,255,.25);
       border-radius: 1rem;
-      padding: 2rem;
-      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+      padding: 1.5rem;
+      display: flex; align-items: center; gap: 1.25rem;
+    }
+    .cert-card.edu-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+    .cert-logo {
+      width: 72px; height: 72px;
+      border-radius: .75rem;
+      object-fit: contain;
+      background: #fff;
+      padding: 6px;
+      flex-shrink: 0;
     }
     .cert-badge {
-      width: 64px; height: 64px;
+      width: 72px; height: 72px;
       background: linear-gradient(135deg, var(--accent), var(--accent4));
       border-radius: .75rem;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.75rem; flex-shrink: 0;
+      font-size: .9rem; font-weight: 800; letter-spacing: -.02em;
+      flex-shrink: 0; color: #fff;
     }
-    .cert-name { font-size: 1.1rem; font-weight: 700; }
-    .cert-issuer { color: var(--muted); font-size: .875rem; }
+    .cert-name { font-size: 1rem; font-weight: 700; line-height: 1.3; }
+    .cert-issuer { color: var(--muted); font-size: .8rem; margin-top: .25rem; }
+    .cert-period { color: var(--accent); font-size: .75rem; font-weight: 600; margin-top: .35rem; }
 
     /* ─── CONTACT ─── */
     .contact-grid {
@@ -947,28 +967,49 @@
       </div>
     </div>
 
-    <!-- Certificação -->
-    <div style="margin-top: 2.5rem;">
+    <!-- Certificação e Formação -->
+    <div class="edu-grid">
+
       <div class="cert-card">
-        <div class="cert-badge" style="font-size:.9rem; font-weight:800; letter-spacing:-.02em;">CTFL</div>
+        <img src="logo-istqb.png" alt="ISTQB" class="cert-logo" />
         <div>
           <div class="cert-name">CTFL — Certified Tester Foundation Level</div>
           <div class="cert-issuer">BSTQB / ISTQB · Certificado Internacional em Testes de Software</div>
         </div>
       </div>
-    </div>
 
-    <!-- Formação -->
-    <div style="margin-top:2rem; display:flex; flex-wrap:wrap; gap:1rem;">
-      <div class="stack-category" style="flex:1; min-width:250px;">
-        <div class="stack-category-title">Formação Acadêmica</div>
-        <div style="display:flex;flex-direction:column;gap:.6rem;margin-top:.25rem;">
-          <div style="font-size:.875rem;"><strong>Pós-graduação</strong> · Ciência de Dados e IA <span style="color:var(--muted);">· Anhanguera · 2025</span></div>
-          <div style="font-size:.875rem;"><strong>Pós-graduação</strong> · Eng. de Software — Qualidade e Testes <span style="color:var(--muted);">· Anhanguera · 2024–2025</span></div>
-          <div style="font-size:.875rem;"><strong>Superior</strong> · Análise e Desenvolvimento de Sistemas <span style="color:var(--muted);">· Anhanguera · 2019–2022</span></div>
+      <div class="cert-card edu-card">
+        <img src="logo-anhanguera.png" alt="Anhanguera" class="cert-logo" />
+        <div>
+          <div class="cert-name">Pós-graduação · Ciência de Dados e IA</div>
+          <div class="cert-issuer">Anhanguera Educacional</div>
+          <div class="cert-period">2025</div>
         </div>
       </div>
-      <div class="stack-category" style="flex:1; min-width:200px;">
+
+      <div class="cert-card edu-card">
+        <img src="logo-anhanguera.png" alt="Anhanguera" class="cert-logo" />
+        <div>
+          <div class="cert-name">Pós-graduação · Eng. de Software — Qualidade e Testes</div>
+          <div class="cert-issuer">Anhanguera Educacional</div>
+          <div class="cert-period">2024 – 2025</div>
+        </div>
+      </div>
+
+      <div class="cert-card edu-card">
+        <img src="logo-anhanguera.png" alt="Anhanguera" class="cert-logo" />
+        <div>
+          <div class="cert-name">Superior · Análise e Desenvolvimento de Sistemas</div>
+          <div class="cert-issuer">Anhanguera Educacional</div>
+          <div class="cert-period">2019 – 2022</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Idiomas -->
+    <div style="margin-top:1rem;">
+      <div class="stack-category">
         <div class="stack-category-title">Idiomas</div>
         <div style="display:flex;flex-direction:column;gap:.6rem;margin-top:.25rem;">
           <div style="font-size:.875rem;"><strong>Português</strong> — Nativo</div>
